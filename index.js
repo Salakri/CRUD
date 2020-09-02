@@ -4,34 +4,38 @@
 const RANDOM_URL = Math.floor((Math.random() * 800) + 1);
 const NUM_EACH_PAGE = 10;
 
-//let items = [];
 let triggeredItem = undefined;
-let items = ["d1", "c2", "f3", "x4", "z5", "f6", "g7", "h8", "i9", "j10", "a11", "b12", "c13", "d14", "e15", "f16", "g17", "h18", "i19", "j20"];
+let items = [];
 let currPage = 1;
 let totalPageNum = 1;
 
-
+getItemData();
+initButtons();
+initEditModal();
+initLikedModal();
 
 //Load API
-// async function getItemData() {
-//     let url = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=" + RANDOM_URL;
-//     //let url = "test error";
-//     let response = await fetch(url);
-//     let data = await response.json();
-//     return data.results;
-// }
+async function getItemData() {
+    let url = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=" + RANDOM_URL;
+    let response = await fetch(url);
+    let data = await response.json();
+    return data.results;
+}
 
-// getItemData().then(res => {
-//     res.forEach(item => {
-//         items.push(item.name);
-//     });
+getItemData().then(res => {
+    res.forEach(item => {
+        items.push(item.name);
+    });
 
-//     initPage(items);
+    initPage(items);
 
-// }).catch(error => {
-// displayErrorPage();
-//     console.log(error);
-// });
+}).catch(error => {
+    displayErrorPage();
+    console.log(error);
+});
+
+
+
 
 //Empty item
 function displayErrorPage() {
@@ -41,7 +45,7 @@ function displayErrorPage() {
     ul.appendChild(newItem);
 }
 
-initPage(items);
+
 
 function initPage(items) {
     let ul = document.getElementsByClassName("list-group")[0];
@@ -118,10 +122,6 @@ function createNewPageButton() {
 
 
 
-// getItemData();
-initButtons();
-initEditModal();
-initLikedModal();
 
 //Initialize items
 function initButtons() {
@@ -162,13 +162,12 @@ function initButtons() {
 
     //Sort button
     document.getElementById("sort-button").addEventListener("click", (e) => {
-        console.log(e.target);
         if (e.target.firstElementChild.className === "arrow up mr-2") {
             e.target.firstElementChild.className = "arrow down mr-2";
-            sortItmesDown();
+            sortItems(true);
         } else {
             e.target.firstElementChild.className = "arrow up mr-2";
-            sortItemsUp();
+            sortItems(false);
         }
     });
 
@@ -366,10 +365,41 @@ function createNewItem(itemName) {
 
 }
 
-function sortItemsUp() {
 
-}
+function sortItems(dir) {
+    //Get Items
+    let ul = document.getElementsByClassName("list-group")[0];
 
-function sortItemsDown() {
+    sortItem = [];
+    for (let i = 0; i < ul.children.length; i++) {
+        let item = { name: ul.children[i].children[1].textContent, liked: ul.children[i].children[0].className };
+        sortItem.push(item);
+    }
+
+    //Sort
+    if (dir === true) {
+        sortItem.sort((a, b) => {
+            if (a.name < b.name) { return -1; }
+            if (a.name > b.name) { return 1; }
+            return 0;
+        });
+    } else {
+        sortItem.sort((a, b) => {
+            if (a.name < b.name) { return 1; }
+            if (a.name > b.name) { return -1; }
+            return 0;
+        });
+    }
+
+    for (let i = 0; i < ul.children.length; i++) {
+        ul.children[i].children[1].textContent = sortItem[i].name;
+        ul.children[i].children[0].className = sortItem[i].liked;
+        if (sortItem[i].liked === "fa fa-star checked") {
+            ul.children[i].children[0].style.display = "inline-block";
+        }
+        if (sortItem[i].liked === "fa fa-star unchecked") {
+            ul.children[i].children[0].style.display = "none";
+        }
+    }
 
 }

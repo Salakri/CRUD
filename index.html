@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title>CRUD APP</title>
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="pt-5 text-center">
+                <h1>CRUD DEMO</h1>
+            </div>
+            <div>
+                <button class="btn btn-outline-dark float-right m-3" id="liked" type="button">Liked List</button>
+            </div>
+        </div>
+        <div class="container">
+            <form onsubmit="event.preventDefault();">
+                <div class="input-group p-5">
+                    <input class="form-control" id="input-catched" type="text" placeholder="Got a new pokemon ! &#128521">
+                    <div class="input-group-append">
+                        <button class="btn btn-dark" id="submit" type="button">Catched</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="mb-4">
+            <a>My Pokemon List</a>
+            <button class="btn btn-outline-dark float-right sort" id="sort-button" type="button">
+                <i class="arrow up mr-2"></i><a>Sort</a>
+            </button>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <ul class="list-group mt-3">
+            <!-- Item Example -->
+            <!-- <li class="list-group-item">
+                <span class="fa fa-star checked"></span>
+                <a>Caterpie</a>
+                <button class="btn btn-light btn-sm float-right ml-2 delete">Delete</button>
+                <button class="btn btn-light btn-sm float-right edit">Edit</button>
+            </li> -->
+        </ul>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal">
+
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Please enter your changes</h5>
+                </div>
+
+                <div class="modal-body">
+                    <form onsubmit="event.preventDefault();">
+                        <input class="form-control" id="input-changes" type="text" placeholder="Pikachu">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" id="close-edit-button">Close</button>
+                    <button type="button" class="btn btn-outline-info" id="save-edit-button">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Liked Modal -->
+    <div id="liked-modal" class="modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">My Liked List</h5>
+                </div>
+
+                <div class="modal-body">
+                    <ul class="list-group mt-3">
+                        <!-- Item Example -->
+                        <!-- <li class="list-group-item">
+                            <a>Bulbasaur</a>
+                        </li> -->
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" id="close-liked-button">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <nav>
+            <ul class="pagination justify-content-center m-5">
+                <li class="page-item" id="previous-page-button">
+                    <a class="page-link text-secondary">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <!-- Pagination Example
+                <li class="page-item"><a class="page-link text-secondary">1</a></li>
+                -->
+                <li class="page-item" id="next-page-button">
+                    <a class="page-link text-secondary">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
+
+
+    <script src="index.js"></script>
+</body>
+
+
+
+<!-- 
+  <ul id="items" class="list-group">
+    <li class="list-group-item">Item 1 <button class="btn btn-light btn-sm float-right delete">X</button></li>
+    <li class="list-group-item">Item 2 <button class="btn btn-danger btn-sm float-right delete">X</button></li>
+    <li class="list-group-item">Item 3 <button class="btn btn-danger btn-sm float-right delete">X</button></li>
+    <li class="list-group-item">Item 4 <button class="btn btn-danger btn-sm float-right delete">X</button></li>
+  </ul> -->

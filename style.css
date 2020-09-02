@@ -1,0 +1,52 @@
+body {
+    font-family: Tahoma, Geneva, sans-serif;
+    /* background-color: bisque; */
+}
+
+header h1 {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+
+/* .modal-header {
+    background-color: rgb(235, 235, 235);
+} */
+
+.edit {
+    display: none;
+}
+
+.delete {
+    display: none;
+}
+
+.unchecked {
+    color: black;
+    display: none;
+}
+
+.checked {
+    color: orange;
+    display: none;
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+}
+
+.down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+button>* {
+    pointer-events: none;
+}
